@@ -1,0 +1,9 @@
+{
+  "method": "POST",
+  "url": "/api/login",
+  "headers": {},
+  "body": {
+    "email": "admin@qaplayground.test",
+    "password": "Admin123!"
+  }
+}

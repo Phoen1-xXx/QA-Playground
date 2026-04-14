@@ -1,0 +1,25 @@
+[INFO] 2026-04-11T20:35:29.011Z - POST /api/login
+{
+  "headers": {},
+  "body": {
+    "email": "admin@qaplayground.test",
+    "password": "Admin123!"
+  }
+}
+[INFO] 2026-04-11T20:35:30.099Z - Response /api/login
+{
+  "status": 200,
+  "body": {
+    "user": {
+      "id": 1,
+      "email": "admin@qaplayground.test",
+      "name": "Alice Admin",
+      "role": "admin",
+      "status": "active",
+      "createdAt": "2026-04-10T22:29:01.107Z"
+    },
+    "message": "Login successful"
+  }
+}
+[INFO] 2026-04-11T20:35:30.099Z - Schema mode: true
+[INFO] 2026-04-11T20:35:30.102Z - Schema created for POST_api_login [success]
