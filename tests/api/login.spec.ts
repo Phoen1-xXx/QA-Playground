@@ -1,5 +1,6 @@
 import { login } from '../../src/api/endpoints/functions';
 import { test } from '../../src/core/fixtures/api.fixtures';
+import { loginPayload } from '../../src/api/payloads/login.payload';
 
 
 test('Admin login @smoke @regression', async ({ api }) => {
@@ -8,10 +9,7 @@ test('Admin login @smoke @regression', async ({ api }) => {
   }
   
   const result = await login(api, {
-    body: {
-      email: process.env.ADMIN_EMAIL,
-      password: process.env.ADMIN_PASSWORD,
-    },
+    body: loginPayload(),
     statusCode: 200,
   });
 });
