@@ -9,7 +9,7 @@ test('Admin login @smoke @regression', async ({ api }) => {
   }
   
   const result = await login(api, {
-    body: loginPayload(),
+    body: loginPayload({email: "asd"}),
     statusCode: 200,
   });
 });

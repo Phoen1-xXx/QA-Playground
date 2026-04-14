@@ -1,0 +1,9 @@
+{
+  "method": "POST",
+  "url": "/api/login",
+  "headers": {},
+  "body": {
+    "email": "asd",
+    "password": "Admin123!"
+  }
+}

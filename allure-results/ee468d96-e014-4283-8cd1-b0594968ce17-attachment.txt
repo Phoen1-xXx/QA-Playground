@@ -1,0 +1,3 @@
+[INFO] 2026-04-14T17:25:24.237Z - Schema mode: true
+[INFO] 2026-04-14T17:25:24.274Z - Schema validation passed for POST_api_login [success]
+[DEBUG] 2026-04-14T17:25:24.274Z - Request passed: POST /api/login -> 200

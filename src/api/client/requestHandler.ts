@@ -105,10 +105,12 @@ export class RequestHandler {
         method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
         expectedStatus?: number
     ) {
-        Logger.info(`${method} ${this.url}`, {
+
+        const requestLog = {
+            endpoint: `${method} ${this.url}`,
             headers: this.headers,
             ...(method !== 'GET' && method !== 'DELETE' ? { body: this.payload } : {}),
-        });
+        };
 
         const requestOptions: any = {
             headers: this.headers,
@@ -117,40 +119,55 @@ export class RequestHandler {
         if (method !== 'GET' && method !== 'DELETE') {
             requestOptions.data = this.payload;
         }
+        try {
+            await AllureHelper.attachJson('Request', {
+                method,
+                url: this.url,
+                headers: this.headers,
+                ...(method !== 'GET' && method !== 'DELETE' ? { body: this.payload } : {}),
+            });
 
-        await AllureHelper.attachJson('Request', {
-            method,
-            url: this.url,
-            headers: this.headers,
-            ...(method !== 'GET' && method !== 'DELETE' ? { body: this.payload } : {}),
-        });
+            const response = await this.context.fetch(this.url, {
+                method,
+                ...requestOptions,
+            });
 
-        const response = await this.context.fetch(this.url, {
-            method,
-            ...requestOptions,
-        });
+            const responseBody = await response.json().catch(() => null);
 
-        const responseBody = await response.json().catch(() => null);
+            await AllureHelper.attachJson('Response', {
+                status: response.status(),
+                body: responseBody,
+            });
 
-        await AllureHelper.attachJson('Response', {
-            status: response.status(),
-            body: responseBody,
-        });
+            const responseLog = {
+                status: response.status(),
+                body: responseBody,
+            };
 
-        Logger.info(`Response ${this.url}`, {
-            status: response.status(),
-            body: responseBody,
-        });
+            await this.handleSchema(method, response.status(), responseBody);
 
-        await this.handleSchema(method, response.status(), responseBody);
+            if (expectedStatus && response.status() !== expectedStatus) {
+                Logger.error(`Request failed: ${method} ${this.url}`, {
+                    request: requestLog,
+                    response: responseLog,
+                });
 
-        if (expectedStatus && response.status() !== expectedStatus) {
+                throw new Error(`Expected ${expectedStatus}, got ${response.status()}`);
+            }
+
+            Logger.debug(`Request passed: ${method} ${this.url} -> ${response.status()}`);
+
+            return { response, body: responseBody };
+        } catch (error) {
+            Logger.error(`Request execution failed: ${method} ${this.url}`, {
+                request: requestLog,
+                error: error instanceof Error ? error.message : String(error),
+            });
+
+            throw error;
+        } finally {
             this.reset();
-            throw new Error(`Expected ${expectedStatus}, got ${response.status()}`);
         }
-
-        this.reset();
-        return { response, body: responseBody };
     }
 
     async postRequest(expectedStatus?: number) {
