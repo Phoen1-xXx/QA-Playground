@@ -1,0 +1,7 @@
+{
+  "method": "GET",
+  "url": "/api/me",
+  "headers": {
+    "If-None-Match": "W/\"87-7qLpmRBljKJCLFrLQGIHdC7b2bc\""
+  }
+}

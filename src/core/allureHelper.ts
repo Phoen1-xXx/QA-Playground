@@ -7,14 +7,14 @@ export class AllureHelper {
         }
 
         await test.info().attach(name, {
-            body: JSON.stringify(data, null, 2),
+            body: Buffer.from(JSON.stringify(data, null, 2)),
             contentType: 'application/json',
         });
     }
 
     static async attachText(name: string, text: string) {
         await test.info().attach(name, {
-            body: text,
+            body: Buffer.from(text),
             contentType: 'text/plain',
         });
     }

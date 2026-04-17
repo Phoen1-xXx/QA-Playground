@@ -6,7 +6,10 @@
   "scripts": {
     "test:api": "playwright test tests/api",
     "test:api:schema": "cross-env SCHEMA=true playwright test tests/api",
+    "test:api:schema:debug": "cross-env DEBUG=true SCHEMA=true playwright test tests/api",
     "test:smoke:schema": "cross-env SCHEMA=true playwright test tests/api --grep @smoke",
+    "test:negative:schema": "cross-env SCHEMA=true playwright test tests/api --grep @negative",
+    "test:login:schema": "cross-env SCHEMA=true playwright test tests/api --grep @login",
     "test:api:schema:fix": "cross-env SCHEMA=fix playwright test tests/api",
     "allure:serve": "allure serve allure-results",
     "allure:generate": "allure generate allure-results --clean -o allure-report"

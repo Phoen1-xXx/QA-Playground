@@ -41,8 +41,6 @@ export class RequestHandler {
     private async handleSchema(method: string, responseStatus: number, responseBody: any) {
         const schemaMode = this.getSchemaMode();
 
-        Logger.info(`Schema mode: ${schemaMode || 'OFF'}`);
-
         if (!schemaMode) {
             return;
         }
@@ -88,7 +86,7 @@ export class RequestHandler {
                 throw new Error(`Schema validation failed for ${schemaName} [${schemaType}]`);
             }
 
-            Logger.info(`Schema validation passed for ${schemaName} [${schemaType}]`);
+            Logger.debug(`Schema validation passed for ${schemaName} [${schemaType}]`);
         }
     }
 

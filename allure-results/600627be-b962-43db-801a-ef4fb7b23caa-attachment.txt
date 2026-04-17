@@ -1,2 +1,0 @@
-[INFO] 2026-04-14T17:30:22.714Z - Schema mode: true
-[INFO] 2026-04-14T17:30:22.743Z - Schema validation passed for POST_api_login [error]

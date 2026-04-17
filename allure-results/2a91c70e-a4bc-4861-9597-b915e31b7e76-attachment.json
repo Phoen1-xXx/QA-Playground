@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "body": {
+    "id": 1,
+    "email": "admin@qaplayground.test",
+    "name": "Alice Admin",
+    "role": "admin",
+    "status": "active",
+    "createdAt": "2026-04-10T22:29:01.107Z"
+  }
+}

@@ -37,6 +37,10 @@ export class Logger {
     }
 
     static debug(message: string, data?: any) {
+        if (process.env.DEBUG !== 'true') {
+            return;
+        }
+
         console.log(
             chalk.blue(`[DEBUG] ${new Date().toISOString()} - ${message}`)
         );

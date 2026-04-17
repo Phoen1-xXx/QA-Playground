@@ -18,10 +18,16 @@ npx playwright install # optional: installs browser binaries
   - Run API tests: `playwright test tests/api`
 - npm run test:api:schema
   - Run API tests with schema validation enabled (`SCHEMA=true`)
+- npm run test:api:schema:debug
+  - Run API tests with schema validation and Debug enabled (`SCHEMA=true`, `DEBUG=true`)  
 - npm run test:api:schema:fix
   - Run API tests with schema generation/fix (`SCHEMA=fix`)
 - npm run test:smoke:schema
   - Run Smoke tests with schema validation enabled (`SCHEMA=true`)
+- npm run test:negative:schema
+  - Run negative tests with schema validation enabled (`SCHEMA=true`)  
+- npm run test:login:schema
+  - Run login tests with schema validation enabled (`SCHEMA=true`)
 - npm run allure:generate
   - Generate Allure report from `allure-results`
 - npm run allure:serve

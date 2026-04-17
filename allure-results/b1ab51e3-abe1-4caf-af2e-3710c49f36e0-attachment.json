@@ -1,7 +1,0 @@
-{
-  "status": 400,
-  "body": {
-    "error": "Bad Request",
-    "message": "[\n  {\n    \"validation\": \"email\",\n    \"code\": \"invalid_string\",\n    \"message\": \"Invalid email\",\n    \"path\": [\n      \"email\"\n    ]\n  }\n]"
-  }
-}
